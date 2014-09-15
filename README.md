@@ -1,6 +1,9 @@
 TreeHerder-Parse
 ================
 
+Demo:
+http://htmlpreview.github.io/?https://github.com/MikeRatcliffe/TreeHerder-Parse/master/TreeherderParse.html
+
 A simple HTML page that uses the TreeHerder API to parse all logs for a given revision e.g. 07b73f261b95 and display all consistently failing tests and crashers. This saves lots of time and sanity I generally use for grepping logs.
 
 It is recommended that you perform the following procedure:
