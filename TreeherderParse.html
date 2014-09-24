@@ -232,6 +232,8 @@
       }
 
       function displayResults() {
+        let href = "";
+
         // Common files
         for (let [title, logObjs] of logs) {
           let commonFiles = null;
@@ -239,6 +241,7 @@
 
           for (let logObj of logObjs) {
             if (!commonFiles) {
+              href = logObj.path;
               commonFiles = new Set([...logObj.parsed]);
             } else {
               for (let entry of commonFiles) {
@@ -253,18 +256,23 @@
 
           if (commonFiles.size > 0) {
             let consistent = document.getElementById("consistent");
-            outputResults(consistent, title, commonFiles);
+            outputResults(consistent, title, commonFiles, href);
           }
 
           if (crashSet.size > 0) {
             let crashers = document.getElementById("crashers");
-            outputResults(crashers, title, crashSet);
+            outputResults(crashers, title, crashSet, href);
           }
         }
       }
 
-      function outputResults(node, title, collection) {
-        node.innerHTML += "<strong>" + title + "</strong><br>";
+      function outputResults(node, title, collection, href="") {
+        if (href) {
+          node.innerHTML += "<strong><a href=\"" + href + "\" target=\"_blank\">" + title + "</a></strong><br>";
+        } else {
+          node.innerHTML += "<strong>" + title + "</strong><br>";
+        }
+
         node.innerHTML += [...collection].join("<br>") + "<br><br>";
       }
 
